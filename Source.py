@@ -8,11 +8,11 @@ class Source:
 
     @staticmethod
     def split_mail(mail, file_type):
-        mail = str(mail)
         username, domain = mail.split('@')
         if file_type == 'txt':
-            dot_index = username.find('.')
-            username = username[:dot_index]
+            if '.' in username:
+                dot_index = username.find('.')
+                username = username[:dot_index]
             if domain.endswith('co'):
                 domain += 'm'
             return username, domain

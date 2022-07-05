@@ -1,3 +1,4 @@
+import sys
 import click
 import os
 from CsvSource import CsvSource
@@ -6,20 +7,23 @@ from TxtSource import TxtSource
 
 def get_files():
     txt_path = []
-    for file in os.listdir("./emails"):
-        if file.endswith(".txt"):
-            txt_path.append(os.path.join("emails", file))
-
     csv_path = []
-    for file in os.listdir("./emails"):
-        if file.endswith(".csv"):
-            csv_path.append(os.path.join("emails", file))
 
-    txt_files = [TxtSource(path, 'txt') for path in txt_path]
-    csv_files = [CsvSource(path, 'csv') for path in csv_path]
+    if "emails" not in os.listdir("."):
+        print('Emails directory was not found! Exiting...')
+        sys.exit()
+    else:
+        for file in os.listdir("./emails"):
+            if file.endswith(".txt"):
+                txt_path.append(os.path.join("emails", file))
+            elif file.endswith(".csv"):
+                csv_path.append(os.path.join("emails", file))
 
-    files = [txt_files, csv_files]
-    return files
+        txt_files = [TxtSource(path, 'txt') for path in txt_path]
+        csv_files = [CsvSource(path, 'csv') for path in csv_path]
+
+        files = [txt_files, csv_files]
+        return files
 
 
 def validate_input(var_dict):
