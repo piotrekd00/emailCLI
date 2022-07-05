@@ -28,3 +28,4 @@ class CsvSource(Source.Source):
                 self.mails.append(new_mail)
             else:
                 self.incorrect_mails.append(user['mail'])
+

@@ -23,3 +23,4 @@ class TxtSource(Source):
                 self.mails.append(new_mail)
             else:
                 self.incorrect_mails.append(mail)
+

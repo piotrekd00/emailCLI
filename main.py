@@ -1,34 +1,50 @@
-from CsvSource import CsvSource
-from TxtSource import TxtSource
-import os
+import click
+from scripts import get_files, validate_input
+from DataEngine import DataEngine
+
+files = get_files()
+engine = DataEngine(files)
+
+
+@click.command()
+@click.option('--incorrect-emails', '-ic', is_flag=True, default=False,
+              help='Prints the number of invalid emails, then one invalid email per line.')
+@click.option('--search', '-s', type=str, default=None,
+              help='Takes a string argument and print the number of found emails, then one found email per line.')
+@click.option('--group-by-domain', '-gbd', is_flag=True, default=False,
+              help='Groups emails by one domain and order domains and emails alphabetically')
+@click.option('--find-emails-not-in-logs', '-feil', type=str, default=None,
+              help='Prints the numbers of found emails in logs, then one found email per line sorted alphabetically.')
+@click.option('--remove-dupes', '-rd', is_flag=True, default=False,
+              help='Removes dupes from the data set, optional')
+def cli(incorrect_emails, search, group_by_domain, find_emails_not_in_logs, remove_dupes):
+    var_dict = {'remove_dupes': remove_dupes,
+                'incorrect_emails': incorrect_emails,
+                'search': search,
+                'group_by_domain': group_by_domain,
+                'find_emails_not_in_logs': find_emails_not_in_logs}
+    validate_input(var_dict)
+
+    if remove_dupes:
+        engine.remove_dupes()
+
+    if incorrect_emails:
+        engine.print_incorrect()
+
+    elif search:
+        engine.search(search)
+
+    elif group_by_domain:
+        engine.group_by_domain()
+
+    elif find_emails_not_in_logs:
+        engine.read_logs(find_emails_not_in_logs)
+
+    else:
+        engine.print_data()
+
 
 if __name__ == '__main__':
+    cli()
 
-    txt_path = []
-    for file in os.listdir("./emails"):
-        if file.endswith(".txt"):
-            txt_path.append(os.path.join("emails", file))
 
-    csv_path = []
-    for file in os.listdir("./emails"):
-        if file.endswith(".csv"):
-            csv_path.append(os.path.join("emails", file))
-
-    txt_files = [TxtSource(path, 'txt') for path in txt_path]
-    csv_files = [CsvSource(path, 'csv') for path in csv_path]
-
-    data = []
-    incorrect_data = []
-    search_result = []
-
-    for file in csv_files and txt_files:
-        file.build_mails()
-        data += file.mails
-        incorrect_data += file.incorrect_mails
-
-    for file in csv_files and txt_files:
-        search_result += file.search("leann")
-
-    print(data)
-    print(incorrect_data)
-    print(search_result)

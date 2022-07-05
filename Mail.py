@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(eq=True, frozen=True)
 class Mail:
     username: str
     domain: str

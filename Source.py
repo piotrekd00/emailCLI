@@ -1,7 +1,4 @@
-from abc import ABC
-
-
-class Source(ABC):
+class Source:
 
     def __init__(self, path, file_type):
         self.path = path
@@ -16,6 +13,8 @@ class Source(ABC):
         if file_type == 'txt':
             dot_index = username.find('.')
             username = username[:dot_index]
+            if domain.endswith('co'):
+                domain += 'm'
             return username, domain
         elif file_type == 'csv':
             return domain
@@ -32,18 +31,6 @@ class Source(ABC):
                     and end_len in range(1, 6) \
                     and end_substring.isalnum():
                 return True
-
-    def search(self, string):
-        result = []
-        for item in self.mails:
-            if string in item.mail:
-                result.append(item)
-        return result
-
-    def filter_domain(self):
-        result = {}
-        for item in self.mails:
-            result['domain'] = item.domain
 
     def fetch_data(self):
         pass
