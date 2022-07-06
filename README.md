@@ -30,7 +30,9 @@ Each file can be one of two types:
 Filename can be random, the program will choose by itself
 ## Usage
 Use `email-engine` to display all emails found in 'emails' directory:
-IMAGE
+
+![base](https://i.ibb.co/jvnCf4F/base.png)
+
 There are options that u can pass to the app:
 
 **WARNING** You can pass only one option (excluding deleting duplicates) at the time, or app will return a kind message for you :)
@@ -44,18 +46,21 @@ Displays all non-valid emails. Email is considered valid if :
 -   length of the part between  `@`  and  `.`  is at least 1
 -   length of the part after the last  `.`  is at least 1 and at most 4 and contains only letters and/or digits
 
-IMAGE
+![ic](https://i.ibb.co/2kCwP39/ic.png)
+
 #### Search emails by text
 `email-engine`	`--search str` `-s str`
 
 The Program takes a string argument and print the number of found emails, then one found email per line.
-IMAGE
+
+![search](https://i.ibb.co/yyR23mn/search.png)
 
 #### Group emails by domain
 `email-engine`	`--group-by-domain` `-gbd`
 
 Groups emails by one domain and orders domains and emails alphabetically
-IMAGE
+
+![gbd](https://i.ibb.co/gT0Mypd/gbd.png)
 
 #### Find emails that are not in the logs file
 `email-engine`	`--find-emails-not-in-logs path_to_logs_file` `-feil path_to_logs_file`
@@ -66,10 +71,12 @@ Finds emails that are not in the provided logs file. Prints the numbers of found
 A Logfile is formatted as follows:  
 `[DATE]: Email has been sent to 'EMAIL'`  
 For example: `[2022-05-16 16:01:03]: Email has been sent to 'verlie.halvorson@larkin.biz'`
-IMAGE
+
+![logs](https://i.ibb.co/1m0KqHv/logs.png)
 
 #### Remove duplicate emails
 `email-engine`	`--remove-dupes` `-rd`
 
 Removes all duplicates from the data set. It can be passed as additional option to every other option, or just by itself to print all emails without duplicates
-IMAGE
+
+![rd](https://i.ibb.co/yS2sW08/rd.png)
