@@ -1,52 +1,75 @@
-# Recruitment task 2022
-Hi!
-This is the task in the recruitment process for the position of Intern Python Developer at Profil Software. Read the instructions carefully.
-Good luck!
-## Background
-There is a directory with files with emails and logs of sent emails. We would like you to build a script/CLI that performs some operations on the email data.
+# Welcome to my project!
 
-## Specifications
-All files (with random names) with emails are **stored in the `emails` directory and your program should fetch required data from there**. Also, the files are named randomly. Each file is one of two types:
+Hi! This project is a simple engine for working with emails contained in **txt** or **csv** files
+
+
+## Installation
+
+ - Make sure u have Python and pip installed 
+ - Cd into project directory and type:   `pip install --editable .`
+ - Type `email-engine` to check if the app is working
+ - To uninstall simply type `pip uninstall email-engine`
+
+## Project's structure
+The app is built on top of vanilla's  python OOP Paradigm and CLI features comes from Click package
+|File|Description|
+|--|--|
+|main|Contains code needed for CLI to work, if you would want to change anything in that regard, this is the place. It is also creating new DataEngine instance |
+|scripts| CLI input validation function and file-path gathering function |
+|DataEngine|Class responsible for all the logic behind working with data provided from files and displaying it in a user-friendly way|
+|Source, TxtSource, CsvSource|Txt and Csv source are child-classes of Source. They are instances of each file in the /emails folder. Responsible for reading from files, filtering incorrect mails and splitting them into more readable way |
+|Email|A dataclass responsible for handling each mail as an object having username, domain and mail|
+
+
+## Input files
+Files must be in **emails** folder in project’s root directory
+Each file can be one of two types:
 - `txt`: one email per line
 - `csv`: in the first column `username`, in the second one `email`
 
-**Important!**  
-When any operation is performed on the data, remember to reject duplicates and incorrect emails (except task 1).  
-Email is considered valid if (for the sake of simplicity):
-- there is only one `@`
-- length of the part before the `@` is at least 1
-- length of the part between `@`  and `.` is at least 1
-- length of the part after the last `.` is at least 1 and at most 4 and contains only letters and/or digits
+Filename can be random, the program will choose by itself
+## Usage
+Use `email-engine` to display all emails found in 'emails' directory:
+IMAGE
+There are options that u can pass to the app:
 
-## Tasks
-For each task, there is separate command **written in parentheses**.
-### 1. Show incorrect emails (`--incorrect-emails`, `-ic`)
-Print the number of invalid emails, then one invalid email per line.
-### 2. Search emails by text (`--search str`, `-s str`)
-The Program should take a string argument and print the number of found emails, then one found email per line.
-### 3. Group emails by domain (`--group-by-domain`, `-gbd`)
-Group emails by one domain and order domains and emails alphabetically
-### 4. Find emails that are not in the logs file (`--find-emails-not-in-logs path_to_logs_file`, `-feil path_to_logs_file`)
-Find emails that are not in the provided logs file. Print the numbers of found emails, then one found email per line sorted alphabetically.  
+**WARNING** You can pass only one option (excluding deleting duplicates) at the time, or app will return a kind message for you :)
+
+#### Show incorrect emails
+`email-engine`	`--incorrect-mails` `-ic`
+
+Displays all non-valid emails. Email is considered valid if :
+-   there is only one  `@`
+-   length of the part before the  `@`  is at least 1
+-   length of the part between  `@`  and  `.`  is at least 1
+-   length of the part after the last  `.`  is at least 1 and at most 4 and contains only letters and/or digits
+
+IMAGE
+#### Search emails by text
+`email-engine`	`--search str` `-s str`
+
+The Program takes a string argument and print the number of found emails, then one found email per line.
+IMAGE
+
+#### Group emails by domain
+`email-engine`	`--group-by-domain` `-gbd`
+
+Groups emails by one domain and orders domains and emails alphabetically
+IMAGE
+
+#### Find emails that are not in the logs file
+`email-engine`	`--find-emails-not-in-logs path_to_logs_file` `-feil path_to_logs_file`
+
+Finds emails that are not in the provided logs file. Prints the numbers of found emails, then one found email per line sorted alphabetically.  
+**WARNING** You must pass the path to the file and it must have .logs extension e.g file.logs
+
 A Logfile is formatted as follows:  
 `[DATE]: Email has been sent to 'EMAIL'`  
-For example: `[2022-05-16 16:01:03]: Email has been sent to 'verlie.halvorson@larkin.biz'` 
+For example: `[2022-05-16 16:01:03]: Email has been sent to 'verlie.halvorson@larkin.biz'`
+IMAGE
 
-### Answers
-Answers for the data in the `emails` directory are provided in the following files:
-- task_1_answer.txt
-- task_2_answer.txt
-- task_3_answer.txt
-- task_4_answer.txt
+#### Remove duplicate emails
+`email-engine`	`--remove-dupes` `-rd`
 
-## Rules & hints
-- use Python 3.10
-- Remeber to use the commands provided in the task names, e.g. to obtain the list of incorrect emails use `--incorrect-emails` command
-- Follow the format of the answers as in provided answer files
-- **use OOP paradigm**
-- You are free to use any third-party libraries
-- Provide README with examples of how to use your script
-- Write Python code that conforms to PEP 8
-- Remember about validating input data,
-- Please handle possible exceptions within the script in a user-friendly way
-- Please put your solution in a private repository on Github and invite reviewer@profil-software.com as a collaborator (any role with at least read-only access to code) -> https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/inviting-collaborators-to-a-personal-repository
+Removes all duplicates from the data set. It can be passed as additional option to every other option, or just by itself to print all emails without duplicates
+IMAGE
