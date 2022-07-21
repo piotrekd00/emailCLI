@@ -1,6 +1,5 @@
 node {   
     stage('Checkout') {
-        print(env.BRANCH_NAME)
         checkout scm
     }
     stage('Build'){
