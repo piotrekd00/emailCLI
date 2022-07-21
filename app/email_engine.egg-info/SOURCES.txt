@@ -1,7 +1,0 @@
-setup.py
-email_engine.egg-info/PKG-INFO
-email_engine.egg-info/SOURCES.txt
-email_engine.egg-info/dependency_links.txt
-email_engine.egg-info/entry_points.txt
-email_engine.egg-info/requires.txt
-email_engine.egg-info/top_level.txt
