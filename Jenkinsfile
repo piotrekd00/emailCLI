@@ -4,5 +4,6 @@ node {
     }
     stage('Build'){
         sh 'pip install -e .'
+        sh 'email-engine'
     }
 }
