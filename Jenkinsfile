@@ -1,4 +1,5 @@
 node {
+    checkout scm
     stage('Checkout') {
         print(env.BRANCH_NAME)
     }
