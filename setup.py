@@ -9,7 +9,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'email-engine = main:cli',
+            'email-engine = app.main:cli',
         ],
     },
 )

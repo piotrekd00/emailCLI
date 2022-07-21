@@ -1,14 +1,14 @@
 import sys
 import click
 import os
-from CsvSource import CsvSource
-from TxtSource import TxtSource
+from .CsvSource import CsvSource
+from .TxtSource import TxtSource
 from pathlib import Path
 
 def get_files():
     txt_path = []
     csv_path = []
-    curr_path = Path(__file__).parent.resolve()
+    curr_path = Path(__file__).parents[1].resolve()
     email_path = str(curr_path)+'/emails'
 
     if "emails" not in os.listdir(curr_path):
