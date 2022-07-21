@@ -21,11 +21,11 @@ def get_files():
         elif file.endswith(".csv"):
             csv_path.append(os.path.join(email_path, file))
 
-        txt_files = [TxtSource(path, 'txt') for path in txt_path]
-        csv_files = [CsvSource(path, 'csv') for path in csv_path]
+    txt_files = [TxtSource(path, 'txt') for path in txt_path]
+    csv_files = [CsvSource(path, 'csv') for path in csv_path]
 
-        files = [txt_files, csv_files]
-        return files
+    files = [txt_files, csv_files]
+    return files
 
 
 def validate_input(var_dict):
