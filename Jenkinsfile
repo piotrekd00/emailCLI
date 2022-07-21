@@ -22,4 +22,7 @@ node {
     stage('Test logs'){
         sh 'email-engine -feil email-sent.logs'
     }
+    stage('Clean up'){
+        sh 'pip uninstall email-engine'
+    }
 }
