@@ -1,6 +1,6 @@
 node {
     stage('Checkout') {
-        if (env.BRANCH_NAME == 'master') {
+        if (env.BRANCH_NAME == 'main') {
             continue
         } else {
             throw new Exception('wrong branch')
