@@ -11,15 +11,15 @@ def get_files():
     curr_path = Path(__file__).parents[1].resolve()
     email_path = str(curr_path)+'/emails'
 
-    if "emails" not in os.listdir(curr_path):
+    if "emails" not in os.listdir(curr_path):       
         print('Emails directory was not found! Exiting...')
         sys.exit()
-    else:
-        for file in os.listdir(email_path):
-            if file.endswith(".txt"):
-                txt_path.append(os.path.join(email_path, file))
-            elif file.endswith(".csv"):
-                csv_path.append(os.path.join(email_path, file))
+    
+    for file in os.listdir(email_path):
+        if file.endswith(".txt"):
+            txt_path.append(os.path.join(email_path, file))
+        elif file.endswith(".csv"):
+            csv_path.append(os.path.join(email_path, file))
 
         txt_files = [TxtSource(path, 'txt') for path in txt_path]
         csv_files = [CsvSource(path, 'csv') for path in csv_path]
