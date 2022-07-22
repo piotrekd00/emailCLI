@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage("Build"){
             steps{
-                paralell{
+                parallel{
                     stage("Alpine"){
                         agent{
                             label 'alpine'
