@@ -5,21 +5,19 @@ from .CsvSource import CsvSource
 from .TxtSource import TxtSource
 from pathlib import Path
 
-def get_files():
+def get_files(path):
     txt_path = []
     csv_path = []
-    curr_path = Path(__file__).parents[1].resolve()
-    email_path = str(curr_path)+'/emails'
 
-    if "emails" not in os.listdir(curr_path):       
-        print('Emails directory was not found! Exiting...')
+    if not os.path.isdir(path):
+        print("Directory does not exist")
         sys.exit()
-    
-    for file in os.listdir(email_path):
+
+    for file in os.listdir(path):
         if file.endswith(".txt"):
-            txt_path.append(os.path.join(email_path, file))
+            txt_path.append(os.path.join(path, file))
         elif file.endswith(".csv"):
-            csv_path.append(os.path.join(email_path, file))
+            csv_path.append(os.path.join(path, file))
 
     txt_files = [TxtSource(path, 'txt') for path in txt_path]
     csv_files = [CsvSource(path, 'csv') for path in csv_path]
@@ -32,7 +30,7 @@ def validate_input(var_dict):
     count = 0
 
     for var in var_dict.keys():
-        if var_dict[var] and var != 'remove_dupes':
+        if var_dict[var]:
             count += 1
 
     if count > 1:

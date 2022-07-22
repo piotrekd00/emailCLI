@@ -2,11 +2,10 @@ import click
 from .scripts import get_files, validate_input
 from .DataEngine import DataEngine
 
-files = get_files()
-engine = DataEngine(files)
-
 
 @click.command()
+@click.option('--path', '-p', type=str, required=True,
+              help='Prints the number of invalid emails, then one invalid email per line.')
 @click.option('--incorrect-emails', '-ic', is_flag=True, default=False,
               help='Prints the number of invalid emails, then one invalid email per line.')
 @click.option('--search', '-s', type=str, default=None,
@@ -17,13 +16,16 @@ engine = DataEngine(files)
               help='Prints the numbers of found emails in logs, then one found email per line sorted alphabetically.')
 @click.option('--remove-dupes', '-rd', is_flag=True, default=False,
               help='Removes dupes from the data set, optional')
-def cli(incorrect_emails, search, group_by_domain, find_emails_not_in_logs, remove_dupes):
-    var_dict = {'remove_dupes': remove_dupes,
-                'incorrect_emails': incorrect_emails,
+def cli(path, incorrect_emails, search, group_by_domain, find_emails_not_in_logs, remove_dupes):
+    var_dict = {'incorrect_emails': incorrect_emails,
                 'search': search,
                 'group_by_domain': group_by_domain,
                 'find_emails_not_in_logs': find_emails_not_in_logs}
+
     validate_input(var_dict)
+
+    files = get_files(path)
+    engine = DataEngine(files)
 
     if remove_dupes:
         engine.remove_dupes()
