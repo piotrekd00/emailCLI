@@ -1,9 +1,9 @@
 pipeline{
     agent none
     stages{
-        stage("Arch"){
+        stage("Alpine"){
             agent{
-                label 'arch'
+                label 'alpine'
             }
             steps{
                 sh 'pacman -S --noconfirm python3'
