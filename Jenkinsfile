@@ -1,9 +1,9 @@
 pipeline{
     agent none
     stages{
-        stage("Alpine"){
+        stage("Arch"){
             agent{
-                label 'alpine'
+                label 'arch'
             }
             steps{
                 sh 'pip install .'
