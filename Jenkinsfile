@@ -7,6 +7,7 @@ pipeline{
             }
             steps{
                 sh 'pip install .'
+                sh 'email-engine -p emails'
             }
         }
     }
