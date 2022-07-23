@@ -18,6 +18,7 @@ pipeline{
                         stage('Test'){
                             steps{
                                 sh '''
+                                cd tests
                                 python3 -m unittest tests.py
                                 '''
                             }
@@ -39,6 +40,7 @@ pipeline{
                         stage('Test'){
                             steps{
                                 sh '''
+                                cd tests
                                 python3 -m unittest tests.py
                                 '''
                             }
@@ -60,6 +62,7 @@ pipeline{
                         stage('Test'){
                             steps{
                                 sh '''
+                                cd tests
                                 python3 -m unittest tests.py
                                 '''
                             }
