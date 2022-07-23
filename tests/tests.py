@@ -1,5 +1,7 @@
 import unittest
-from emailCLI.app.scripts import get_files
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+from app.scripts import get_files
 from TestDataEngine import TestDataEngine
 
 class TestFeatures(unittest.TestCase):
