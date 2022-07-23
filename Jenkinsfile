@@ -38,7 +38,7 @@ pipeline{
                 }
             }   
         }
-        stage("Build"){
+        stage("Tests"){
             parallel{
                 stage("Alpine"){
                     agent{
