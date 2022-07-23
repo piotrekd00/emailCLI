@@ -10,7 +10,6 @@ pipeline{
                     steps{
                         sh '''
                         pip install .
-                        email-engine
                         '''
                     }
                 }
@@ -21,7 +20,6 @@ pipeline{
                     steps{
                         sh '''
                         pip install .
-                        email-engine
                         '''
                     }
                 }
@@ -32,7 +30,6 @@ pipeline{
                     steps{
                         sh '''
                         pip install .
-                        email-engine
                         '''
                     }
                 }
