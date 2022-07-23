@@ -1,5 +1,5 @@
 import unittest
-from emailCLI.app.scripts import get_files
+from ..app.scripts import get_files
 from TestDataEngine import TestDataEngine
 
 class TestFeatures(unittest.TestCase):
