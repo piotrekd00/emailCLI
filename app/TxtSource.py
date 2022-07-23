@@ -11,7 +11,10 @@ class TxtSource(Source):
         data = []
         with open(self.path) as f:
             for mail in f.readlines():
-                data.append(mail[:-1])
+                if mail.endswith('\n'):
+                    data.append(mail[:-1])
+                else:
+                    data.append(mail)
         return data
 
     def build_mails(self):

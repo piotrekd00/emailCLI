@@ -8,8 +8,10 @@ pipeline{
                         label 'alpine'
                     }
                     steps{
-                        sh 'pip install .'
-                        sh 'email-engine -p emails'
+                        sh '''
+                        pip install .
+                        email-engine
+                        '''
                     }
                 }
                         stage("Arch"){
@@ -17,8 +19,10 @@ pipeline{
                         label 'arch'
                     }
                     steps{
-                        sh 'pip install .'
-                        sh 'email-engine -p emails'
+                        sh '''
+                        pip install .
+                        email-engine
+                        '''
                     }
                 }
                         stage("Debian"){
@@ -26,8 +30,47 @@ pipeline{
                         label 'debian'
                     }
                     steps{
-                        sh 'pip install .'
-                        sh 'email-engine -p emails'
+                        sh '''
+                        pip install .
+                        email-engine
+                        '''
+                    }
+                }
+            }   
+        }
+        stage("Build"){
+            parallel{
+                stage("Alpine"){
+                    agent{
+                        label 'alpine'
+                    }
+                    steps{
+                        sh '''
+                        cd tests
+                        python3 -m unittest tests.py
+                        '''
+                    }
+                }
+                        stage("Arch"){
+                    agent{
+                        label 'arch'
+                    }
+                    steps{
+                        sh '''
+                        cd tests
+                        python3 -m unittest tests.py
+                        '''
+                    }
+                }
+                        stage("Debian"){
+                    agent{
+                        label 'debian'
+                    }
+                    steps{
+                        sh '''
+                        cd tests
+                        python3 -m unittest tests.py
+                        '''
                     }
                 }
             }   
