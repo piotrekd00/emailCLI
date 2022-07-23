@@ -18,7 +18,7 @@ pipeline{
                         stage('Test'){
                             steps{
                                 sh '''
-                                python3 unittest tests.py
+                                python3 -m unittest tests.py
                                 '''
                             }
                         }
@@ -39,7 +39,7 @@ pipeline{
                         stage('Test'){
                             steps{
                                 sh '''
-                                python3 unittest tests.py
+                                python3 -m unittest tests.py
                                 '''
                             }
                         }
@@ -60,7 +60,7 @@ pipeline{
                         stage('Test'){
                             steps{
                                 sh '''
-                                python3 unittest tests.py
+                                python3 -m unittest tests.py
                                 '''
                             }
                         }
