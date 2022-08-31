@@ -47,7 +47,7 @@ class TestDataEngine:
         group = {}
         result = []
         for item in self.data:
-            if item.domain not in group.keys():
+            if item.domain not in group:
                 group[item.domain] = [item.mail]
             else:
                 group[item.domain].append(item.mail)
