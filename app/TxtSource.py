@@ -4,9 +4,6 @@ from .Mail import Mail
 
 class TxtSource(Source):
 
-    def __init__(self, path, file_type):
-        super(TxtSource, self).__init__(path, file_type)
-
     def fetch_data(self):
         data = []
         with open(self.path) as f:
