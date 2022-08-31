@@ -3,7 +3,6 @@ import click
 import os
 from .CsvSource import CsvSource
 from .TxtSource import TxtSource
-from pathlib import Path
 
 def get_files(path):
     txt_path = []
