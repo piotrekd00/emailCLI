@@ -16,7 +16,7 @@ class Source:
             if domain.endswith('co'):
                 domain += 'm'
             return username, domain
-        elif file_type == 'csv':
+        if file_type == 'csv':
             if domain.endswith('co'):
                 domain += 'm'
             return domain
