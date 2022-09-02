@@ -5,9 +5,6 @@ from .Mail import Mail
 
 class CsvSource(Source):
 
-    def __init__(self, path, file_type):
-        super(CsvSource, self).__init__(path, file_type)
-
     def fetch_data(self):
         data = []
         with open(self.path) as f:
