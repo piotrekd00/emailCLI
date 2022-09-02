@@ -41,7 +41,7 @@ class DataEngine:
     def group_by_domain(self):
         result = {}
         for item in self.data:
-            if item.domain not in result.keys():
+            if item.domain not in result:
                 result[item.domain] = [item.mail]
             else:
                 result[item.domain].append(item.mail)
