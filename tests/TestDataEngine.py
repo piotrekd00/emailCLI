@@ -23,8 +23,7 @@ class TestDataEngine:
             print(f'\t{item.mail}')
 
     def get_incorrect(self):
-        result = []
-        result.append(f'Invalid emails ({len(self.incorrect_data)}):')
+        result = [f'Invalid emails ({len(self.incorrect_data)}):']
         for item in self.incorrect_data:
             result.append(f'        {item}')
         return result
